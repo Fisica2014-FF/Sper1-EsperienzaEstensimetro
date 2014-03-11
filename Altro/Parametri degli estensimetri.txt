@@ -1,0 +1,11 @@
+E8: Materiale - Acciaio
+L=950 +- 2mm
+d=0.356 mm +- 1%
+
+E13: Materiale - Acciaio
+L=900 +- 2mm 
+d=0.279mm +- 1%
+
+E16: Materiale - Acciaio
+L=600 +- 2mm
+d=0.279mm +- 1%

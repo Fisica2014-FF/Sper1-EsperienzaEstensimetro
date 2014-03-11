@@ -6,7 +6,9 @@
 #include <algorithm>
 #include <memory>
 #include <limits>
-
+#include <string>
+#include <map>
+#include <unordered_map>
 
 
 #ifdef _MIO_DEBUG_
@@ -26,6 +28,20 @@ namespace mions {
 namespace dataAnalisi {
 using std::vector;
 
+/** Classe che rappresenta un file del mio formato fdat, che ha all'inizio dei metadati sui dati
+ *  con la sintassi:
+ *	#%FORMATO_
+ */
+class File_Fdat {
+public:
+	std::string formato;
+	std::unordered_map<std::string, int> MetaDatiGenerici;
+
+	MetaDatiFile(std::string nomeFile) {
+
+	}
+};
+
 ///////////////////////
 //					 //
 //	  VERSIONE 1.3	 //
@@ -40,6 +56,7 @@ template <typename> class VarStat;//Forward declaration da usare nella funzione 
 
 template <typename T> const VarStat<T> operator*(const double& , const VarStat<T> );
 template <typename T> const VarStat<T> operator*(const VarStat<T> , const double& );
+template <typename T> const VarStat<T> pot(const VarStat<T> , const double& );//Potenza
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Versione
@@ -64,6 +81,12 @@ std::ostream& operator <<(std::ostream& os, const VarStat<U>& rhs) {
 	return os;
 
 }
+
+//Potenza
+template <typename U>
+const VarStat<U> pot(const VarStat<U> base, const double& esponente){
+
+};
 
 //Moltiplicazione a destra per uno scalare
 template <typename U>
@@ -106,6 +129,7 @@ public:
 		dErroreMedia = 0;
 	}
 
+	//
 	VarStat(T valore, double DevStdPop, int numDati = 100000) {
 		iNumero_dati = numDati;
 		dMedia = (double)valore;
@@ -117,6 +141,13 @@ public:
 		dMin = (double)valore - DevStdPop;
 		dErroreMedia = 0;
 	}
+
+	VarStat(std::string nomeFile){
+		if (nomeFile.find(".fdat")) {
+
+		}
+	}
+
 
 	//Costruttore
 	VarStat(const vector<T>& aDati, bool eliminaTreSigma = true) {
