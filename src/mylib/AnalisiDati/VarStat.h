@@ -37,7 +37,7 @@ class File_Fdat {
 public:
 	//std::string formato;
 	std::unordered_map<std::string, double> MetaDatiGenerici;
-	std::vector<T> vDati;
+	std::vector<std::vector<T>> vDati;//Array di dati
 
 	// Leggi i tag dal file e il loro numero associato e fai una map
 	/* Esempi:
@@ -62,22 +62,31 @@ public:
 
 		//Se una linea inizia con #%
 		while (getline(file_form,rigamd)) {
-			if (rigamd.substr(0,1) == "#%") {
-				sriga << rigamd; //
-				sriga >> temp >> temp; //Togli #%
+			//Controlla se i commenti sono tag
+			//Leggi i tag (inizia a (0) e prendi (1) carattere)
+			if (rigamd.substr(0,1) == "#") {
+				if (rigamd.substr(0,2) == "#%") {
+					sriga << rigamd; //
+					sriga >> temp >> temp; //Togli #%
 
-				sriga >> temp;
-				while ( temp !=  ':' ) {
-					sindice << temp;
-					//Prendi un nuovo carattere
 					sriga >> temp;
-				};
-				//I caratteri rimanenti sono il valore
-				sriga >> ddato;
-				//metti lo stringstream dentro la stringa
-				sindice >> indice;
-				MetaDatiGenerici[indice] = ddato;
+					while ( temp !=  ':' ) {
+						sindice << temp;
+						//Prendi un nuovo carattere
+						sriga >> temp;
+					};
+					//I caratteri rimanenti sono il valore
+					sriga >> ddato;
+					//metti lo stringstream dentro la stringa
+					sindice >> indice;
+					MetaDatiGenerici[indice] = ddato;
+				} else
+					continue;
+			//Altrimenti leggi i numeri
+			} else {
+
 			}
+
 		}
 	}
 };
