@@ -1,2 +1,9 @@
 Abbiamo preso i dati a partire da 100 gf, tranne da E16 che siamo partiti da 200
 i file dell'andata iniziano da 0 perchè misuriamo un delta
+
+# Comfsdfsd dfgd mento: 2
+#%NUM_DATI:3
+#%CIAO:2
+342
+2354563
+435345

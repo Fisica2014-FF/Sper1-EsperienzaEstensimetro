@@ -34,12 +34,42 @@ using std::vector;
  */
 class File_Fdat {
 public:
-	std::string formato;
-	std::unordered_map<std::string, int> MetaDatiGenerici;
+	//std::string formato;
+	std::unordered_map<std::string, double> MetaDatiGenerici;
 
-	MetaDatiFile(std::string nomeFile) {
+	File_Fdat(std::string nomeFile) {
+		using namespace std;
+		ifstream file_form;
+		string rigamd;
 
-	}
+		stringstream sriga;
+		stringstream sindice;
+
+		string indice;
+		double ddato;
+		char temp;
+
+		file_form.open(nomeFile.c_str());
+
+		while (getline(file_form,rigamd)) {
+			if (rigamd.substr(0,1) == "#%") {
+				sriga << rigamd;
+				sriga >> temp >> temp;//Togli #%
+
+				sriga >> temp;
+				while ( temp !=  ':' ) {
+
+					sindice << temp;
+					sriga >> temp;
+
+				};
+				sriga >> ddato;
+				sindice >> indice;
+				MetaDatiGenerici[indice] = ddato;
+			}
+		}
+
+	};
 };
 
 ///////////////////////

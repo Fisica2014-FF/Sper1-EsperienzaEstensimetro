@@ -1,0 +1,106 @@
+\documentclass[12pt]{article} % Prepara un documento con un font grande
+\usepackage[italian]{babel} % Adatta LaTeX alle convenzioni tipografiche italiane,
+							% e ridefinisce alcuni titoli in italiano, come "Capitolo" al posto di "Chapter",
+							% se il documento è in italiano
+
+\usepackage[utf8]{inputenc} % Consente l'uso caratteri accentati italiani
+\usepackage{graphicx}		% Per le immagini
+\usepackage{float}
+\usepackage[top=2in, bottom=1.5in, left=0.5in, right=0.5in]{geometry}
+
+\nonstopmode %non fermarti agli errori
+
+\title {Relazione di Laboratorio - Estensimetro}
+\author{Francesco Forcher\\
+Facoltà di Fisica\\
+Università di Padova\\
+Matricola: \texttt{1073458}\\
+\texttt{mailto:francesco.forcher@studenti.unipd.it}\\
+\and
+Andrea Piccinin\\ 
+Facoltà di Fisica\\
+Università di Padova\\
+Matricola: \texttt{1070620}\\
+\texttt{mailto:andrea.piccinin1@studenti.unipd.it}\\
+}
+
+\date{\today}
+
+
+\pagestyle{headings}
+\DeclareGraphicsExtensions{.pdf, .png, .jpg} % Se due immagini hanno lo stesso nome sceglile secondo l'ordine di filetype qui
+
+\graphicspath{ {./img/} }%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%EDITARE PATH!!%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% % Path delle immagini 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% PROVA MODIFICA DA BROWSER!!!!
+%////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+%////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+% Fine dei dati iniziali per il latex: il documento finale inizierà da qui
+\begin{document}
+
+
+\maketitle % Produce il titolo a partire dai comandi \title, \author e \date
+\tableofcontents % Prepara l'indice generale
+
+
+
+        
+
+\section{Obiettivi}
+		
+\section{Descrizione dell'apparato strumentale}
+		
+\section{Metodologia di misura}
+		
+\section{Presentazione dati sperimentali}			
+	Riportiamo in seguito le misure tabulate, con relative statistiche.
+	
+	\subsection {Inclinazione 15', senza peso}
+	La quarta misura nell'intervallo 40-60 cm ha un valore non compatibile con gli altri. Potrebbe esserci stato un errore nella trascrizione dei dati durante la misurazione.
+	%\include{}
+
+\section{Discussione dati sperimentali}
+	Compatibilmente con le previsioni teoriche, si è verificato che l'accelerazione della slitta non dipende dalla sua massa, infatti, 		aggiungendo il peso, varia soltanto la velocità, e che, diminuendo la velocità iniziale della slitta con l'aggiunta dello spessore, 		la decelerazione data dalla forza di attrito dell'aria è rimasta invariata. 
+
+\section{Conclusioni}
+	Si ha una migliore stima di \textbf{g} 
+	
+% Esempio di inclusione di un immagine ./img/spazio1.png etichettata fig:spazio, al centro, larga 0.8 per larghezza del testo, con testo sotto Spazio!
+\section {Grafici}
+	Di seguito sono riportati i grafici delle velocità medie e le rette interpolanti.
+	\subsection {}
+	%\include{}
+	
+\section{Codice}	
+
+\paragraph{}
+	Riportiamo in seguito il programma utilizzato per l'elaborazione dei dati
+	%Verbatim non interpreta l'imput lasciando il testo com'è: ideale per inserire codice
+	\begin{verbatim}
+
+	\end{verbatim}
+
+
+%\subsection{Esempio immagini}
+%\begin{figure}[p]
+%    \centering
+%    \includegraphics[width=0.8\textwidth]{spazio1}
+%    \caption{Spazio!}
+%    \label{fig:spazio1}
+%\end{figure}
+
+\end{document}
