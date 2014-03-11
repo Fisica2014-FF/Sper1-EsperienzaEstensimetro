@@ -1,6 +1,23 @@
 Abbiamo preso i dati a partire da 100 gf, tranne da E16 che siamo partiti da 200
 i file dell'andata iniziano da 0 perchè misuriamo un delta
 
+CONVENZIONI:
+#%MATERIALE:(num)
+1=acciaio
+2=tungsteno
+3=ottone
+
+
+
+
+
+
+
+
+
+
+
+
 # Comfsdfsd dfgd mento: 2
 #%NUM_DATI:3
 #%CIAO:2

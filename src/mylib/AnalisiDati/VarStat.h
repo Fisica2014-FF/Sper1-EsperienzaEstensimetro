@@ -32,11 +32,19 @@ using std::vector;
  *  con la sintassi:
  *	#%FORMATO_
  */
+template <class T>
 class File_Fdat {
 public:
 	//std::string formato;
 	std::unordered_map<std::string, double> MetaDatiGenerici;
+	std::vector<T> vDati;
 
+	// Leggi i tag dal file e il loro numero associato e fai una map
+	/* Esempi:
+	 * #%MATERIALE:2
+	 * #%LUNGHEZZA:500
+	 *
+	 */
 	File_Fdat(std::string nomeFile) {
 		using namespace std;
 		ifstream file_form;
@@ -51,25 +59,27 @@ public:
 
 		file_form.open(nomeFile.c_str());
 
+
+		//Se una linea inizia con #%
 		while (getline(file_form,rigamd)) {
 			if (rigamd.substr(0,1) == "#%") {
-				sriga << rigamd;
-				sriga >> temp >> temp;//Togli #%
+				sriga << rigamd; //
+				sriga >> temp >> temp; //Togli #%
 
 				sriga >> temp;
 				while ( temp !=  ':' ) {
-
 					sindice << temp;
+					//Prendi un nuovo carattere
 					sriga >> temp;
-
 				};
+				//I caratteri rimanenti sono il valore
 				sriga >> ddato;
+				//metti lo stringstream dentro la stringa
 				sindice >> indice;
 				MetaDatiGenerici[indice] = ddato;
 			}
 		}
-
-	};
+	}
 };
 
 ///////////////////////
