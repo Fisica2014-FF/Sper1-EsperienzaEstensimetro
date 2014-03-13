@@ -4,7 +4,7 @@
 #include <cmath>
 #include <vector>
 #include <algorithm>
-#include <memory>
+#include <memory>//Shared_ptr
 #include <limits>
 #include <string>
 #include <map>
@@ -27,6 +27,7 @@ namespace mions {
 //Classi per l'analisi dei dati statistici
 namespace dataAnalisi {
 using std::vector;
+using std::shared_ptr;
 
 /** Classe che rappresenta un file del mio formato fdat, che ha all'inizio dei metadati sui dati
  *  con la sintassi:
@@ -36,13 +37,17 @@ template <class T>
 class File_Fdat {
 public:
 	//std::string formato;
-	std::unordered_map<std::string, double> MetaDatiGenerici;
-	std::vector<std::vector<T>> vDati;//Array di dati
+	std::map<std::string, double> MetaDatiGenerici;
+
+
+	vector< vector<T> > vColDati;//Matrice dei dati: un vettore di puntatori a dei vettori
 
 	// Leggi i tag dal file e il loro numero associato e fai una map
 	/* Esempi:
 	 * #%MATERIALE:2
 	 * #%LUNGHEZZA:500
+	 *
+	 * Inoltre memorizza la matrice dei dati
 	 *
 	 */
 	File_Fdat(std::string nomeFile) {
@@ -54,19 +59,22 @@ public:
 		stringstream sindice;
 
 		string indice;
-		double ddato;
+		double dvalore;
 		char temp;
 
+		clog << "E fin qua...";
 		file_form.open(nomeFile.c_str());
+		if (!file_form.is_open())
+			throw "Errore: file di dati non aperto";
 
 
-		//Se una linea inizia con #%
 		while (getline(file_form,rigamd)) {
 			//Controlla se i commenti sono tag
 			//Leggi i tag (inizia a (0) e prendi (1) carattere)
 			if (rigamd.substr(0,1) == "#") {
+				//Se una linea inizia con #% è un metadato, della forma #%(string)INDICE:(double)DATO
 				if (rigamd.substr(0,2) == "#%") {
-					sriga << rigamd; //
+					sriga << rigamd; //Scrivi nello stringstream la stringa, per estrarci le varie robe
 					sriga >> temp >> temp; //Togli #%
 
 					sriga >> temp;
@@ -76,19 +84,57 @@ public:
 						sriga >> temp;
 					};
 					//I caratteri rimanenti sono il valore
-					sriga >> ddato;
+					sriga >> dvalore;
 					//metti lo stringstream dentro la stringa
 					sindice >> indice;
-					MetaDatiGenerici[indice] = ddato;
+					MetaDatiGenerici[indice] = dvalore;
 				} else
 					continue;
 			//Altrimenti leggi i numeri
 			} else {
+				sriga << rigamd; //Scrivi nello stringstream la stringa, per estrarci la riga di dati
+				#ifdef _MIO_DEBUG_
+				clog << rigamd << "\n";
+				#endif
 
+
+				vector<T> tempvect;
+				T tempnum;
+				while (sriga)
+				{
+					sriga >> tempnum;
+					// If perchè sennò, arrivato alla fine, cerca di estrarre un numero, fallisce e quindi pusho
+					// di nuovo in tempvect l'ultimo numero
+					if (sriga)
+						tempvect.push_back(tempnum);
+				}
+
+				vColDati.push_back(tempvect);
+				//r=r+1;
 			}
-
+		sriga.clear();
+		sindice.clear();
 		}
 	}
+
+	//Se l'indice è un numero n, ritorna l'n-esima riga della matrice di numeri
+	std::vector<T> operator[](int indice) {
+		//At lancia una out_of_range_exception se si mette un indice troppo grande o troppo piccolo
+		return vColDati.at(indice);
+	}
+
+	//Se l'indice è una stringa, ritorna il metadato associato nella map
+	double operator[](std::string stringaindice){
+
+
+		auto iterat = MetaDatiGenerici.find(stringaindice);
+
+		if (iterat != MetaDatiGenerici.end())
+			return iterat->second;
+		else
+			throw "Errore: usato indice non esistente";
+	}
+
 };
 
 ///////////////////////

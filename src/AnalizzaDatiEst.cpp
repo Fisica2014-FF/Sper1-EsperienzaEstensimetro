@@ -32,6 +32,29 @@
 int main(int numParam, char* args[]) {
 using namespace std;
 	try{
+		const int DATO = 0;
+
+		using FileDati = mions::dataAnalisi::File_Fdat<double>;
+		FileDati fileDati("./DatiFormattati/E13_andata.fdat");
+
+		//Stampa i metadati
+		cout << "Stampa i metadati:\n";
+		for(pair<string,double> meta : fileDati.MetaDatiGenerici){
+			cout << meta.first << " = " << meta.second << endl;
+		}
+
+		cout << "\nStampa i dati:\n";
+		for(vector<double> riga : fileDati.vColDati){
+			for (double dato : riga) {
+				cout << dato << " ";
+			}
+			cout << endl;
+		}
+
+		cout << "\nTest Vari:\n";
+		cout << "fileDati[3]: " << fileDati[3][DATO] << endl;
+		cout << "fileDati[DIAMETRO]: " << fileDati["DIAMETRO"] << endl;
+		cout << "fileDati[indice che non esiste]: " << fileDati["ciao"];
 
 	} catch (exception &e) {
 		cout << e.what() << endl;
@@ -43,6 +66,7 @@ using namespace std;
 		cout << e << endl;
 		return -3;
 	}
+
 	//cout << "\n";
 	return 0;
 }
