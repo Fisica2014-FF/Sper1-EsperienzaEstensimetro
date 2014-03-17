@@ -27,12 +27,14 @@ namespace mions {
 //Classi per l'analisi dei dati statistici
 namespace dataAnalisi {
 using std::vector;
-using std::shared_ptr;
+//using std::shared_ptr;
 
-/** Classe che rappresenta un file del mio formato fdat, che ha all'inizio dei metadati sui dati
- *  con la sintassi:
- *	#%FORMATO_
- */
+//Aggiunta classe che legge i file in formato fdat
+//L'interfaccia è con la notazione "fd[indice]": gli oggetti della classe File_Fdat,
+//se l'indice è un numero i, ritornano l'i-esima riga come vettore
+//(Naturalmente in questo caso per righe si ignorano commenti e metadati, che iniziano rispettivamente con # e #%).
+//Quindi si comportano come matrici (array multidimensionali) indicizzate da numeri, che contengono le colonne di dati.
+//Se invece l'indice è una stringa, recupera i metadati associati a quel tag.
 template <class T>
 class File_Fdat {
 public:
@@ -42,8 +44,9 @@ public:
 
 	vector< vector<T> > vColDati;//Matrice dei dati: un vettore di puntatori a dei vettori
 
-	// Leggi i tag dal file e il loro numero associato e fai una map
-	/* Esempi:
+	// Leggi una riga alla volta, se è un commento saltala, altrimenti prosegui:
+	// 		se è un metadato aggiungilo alla mappa, sennò memorizza la riga di numeri
+	/* Esempi di metadati:
 	 * #%MATERIALE:2
 	 * #%LUNGHEZZA:500
 	 *
@@ -118,17 +121,16 @@ public:
 	}
 
 	//Se l'indice è un numero n, ritorna l'n-esima riga della matrice di numeri
-	std::vector<T> operator[](int indice) {
+	inline std::vector<T> operator[](int indice) {
 		//At lancia una out_of_range_exception se si mette un indice troppo grande o troppo piccolo
 		return vColDati.at(indice);
 	}
 
 	//Se l'indice è una stringa, ritorna il metadato associato nella map
-	double operator[](std::string stringaindice){
+	inline double operator[](std::string stringaindice){
 
 
 		auto iterat = MetaDatiGenerici.find(stringaindice);
-
 		if (iterat != MetaDatiGenerici.end())
 			return iterat->second;
 		else
@@ -475,7 +477,6 @@ public:
 
 		// Il massimo della somma è la somma dei due massimi
 		// Worst-case max? Non ben definito, ma se ho due set di dati, il massimo (tra tutte le possibilità) è la somma dei due massimi precedenti
-		// TODO: Casi non maggiori di zero
 		// TODO: Casi non maggiori di zero
 		dMax = (getMedia() > 0) ? (getMax() * rhs.getMax()) : ( INFINITY );
 

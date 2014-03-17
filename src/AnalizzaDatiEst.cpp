@@ -16,6 +16,7 @@
 #include <cstdlib>//system(clear)
 #include <algorithm>//Sort?
 #include <sstream>//StringStream
+#include <map>
 
 /////////////////////////////////////////////////////////////////////////////////////
 //le mie classi
@@ -32,29 +33,43 @@
 int main(int numParam, char* args[]) {
 using namespace std;
 	try{
-		const int DATO = 0;
+//		const int DATO = 0;
+//		const int INDICE = 1;
+//
+//		using FileDati = mions::dataAnalisi::File_Fdat<double>;
+//		FileDati fileDati("./DatiFormattati/cancellami");
+//
+//		//Stampa i metadati
+//		cout << "Stampa i metadati:\n";
+//		for(pair<string,double> meta : fileDati.MetaDatiGenerici){
+//			cout << meta.first << " = " << meta.second << endl;
+//		}
+//
+//		cout << "\nStampa i dati:\n";
+//		for(vector<double> riga : fileDati.vColDati){
+//			for (double dato : riga) {
+//				cout << dato << " ";
+//			}
+//			cout << endl;
+//		}
+//
+//		cout << "\nTest Vari:\n";
+//		cout << "fileDati[3][DATO]: " << fileDati[3][DATO] << endl;
+//		cout << "fileDati[3][INDICE]: " << fileDati[3][INDICE] << endl;
+//		cout << "fileDati[DIAMETRO]: " << fileDati["DIAMETRO"] << endl;
+//		cout << "fileDati[indice che non esiste]: " << fileDati["ciao"];
+		{
+			cout << numParam;
+			string stringaNomeFileDiDati;
+			//map<string,> ciao;
 
-		using FileDati = mions::dataAnalisi::File_Fdat<double>;
-		FileDati fileDati("./DatiFormattati/E13_andata.fdat");
+			fstream ListaFileDiDati;
+			ListaFileDiDati.open("./Altro/ListaFileDiDati.txt");
 
-		//Stampa i metadati
-		cout << "Stampa i metadati:\n";
-		for(pair<string,double> meta : fileDati.MetaDatiGenerici){
-			cout << meta.first << " = " << meta.second << endl;
-		}
-
-		cout << "\nStampa i dati:\n";
-		for(vector<double> riga : fileDati.vColDati){
-			for (double dato : riga) {
-				cout << dato << " ";
+			while(getline(ListaFileDiDati,stringaNomeFileDiDati)) {
+				;
 			}
-			cout << endl;
 		}
-
-		cout << "\nTest Vari:\n";
-		cout << "fileDati[3]: " << fileDati[3][DATO] << endl;
-		cout << "fileDati[DIAMETRO]: " << fileDati["DIAMETRO"] << endl;
-		cout << "fileDati[indice che non esiste]: " << fileDati["ciao"];
 
 	} catch (exception &e) {
 		cout << e.what() << endl;
