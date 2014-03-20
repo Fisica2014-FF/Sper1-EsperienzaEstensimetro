@@ -153,7 +153,7 @@ template <typename> class VarStat;//Forward declaration da usare nella funzione 
 
 template <typename T> const VarStat<T> operator*(const double& , const VarStat<T> );
 template <typename T> const VarStat<T> operator*(const VarStat<T> , const double& );
-template <typename T> const VarStat<T> pot(const VarStat<T> , const double& );//Potenza
+//template <typename T> const VarStat<T> potcombo(const VarStat<T>& , const double , const VarStat<T>& , const double );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Versione
@@ -179,11 +179,34 @@ std::ostream& operator <<(std::ostream& os, const VarStat<U>& rhs) {
 
 }
 
-//Potenza
-template <typename U>
-const VarStat<U> pot(const VarStat<U> base, const double& esponente){
-
-};
+////Potenza
+//template <typename U>
+//const VarStat<U> potcombo(const VarStat<U>& base1, const double& esponente1, const VarStat<U>& base2, const double& esponente2){
+//		//Obiettivo: dare gli stessi risultati come se avessi moltiplicato i dati di due insiemi (i dati due a due, non gli insiemi) ma senza un ordine definito tra i due
+//		//iNumero_dati = iNumero_dati; Non sto unendo gli insiemi di dati, ma moltiplicando i singoli elementi fra loro
+//			//Salvo la media
+//		VarStat<U> result;
+//		result.dMedia = rhs.getMedia() * getMedia();//MOltiplica le medie delle due variabili
+//		result.dVarianzaCampione = getMedia()*getMedia()*(rhs.getVarianzaCampione() / (tMedia*tMedia) + getVarianzaCampione() / (rhs.getMedia() * rhs.getMedia()) );//Propagazione dell'errore
+//		dVarianzaPopolazione = getMedia()*getMedia()*(rhs.getVarianzaPopolazione() / (tMedia*tMedia) + getVarianzaPopolazione() / (rhs.getMedia() * rhs.getMedia()) );
+//
+//		//La nuova varianza permette di calcolare direttamente la nuova std
+//		dDeviazioneStandardCamp = sqrt(getVarianzaCampione());
+//		dDeviazioneStandardPop = sqrt(getVarianzaPopolazione());
+//
+//		// Il massimo della somma è la somma dei due massimi
+//		// Worst-case max? Non ben definito, ma se ho due set di dati, il massimo (tra tutte le possibilità) è la somma dei due massimi precedenti
+//		// TODO: Casi non maggiori di zero
+//		dMax = (getMedia() > 0) ? (getMax() * rhs.getMax()) : ( INFINITY );
+//
+//		//Idem per il minimo, il minimo "minore" è la somma dei minimi
+//		dMin = (getMedia() > 0) ? (getMin() * rhs.getMin()) : ( -INFINITY );
+//
+//		dErroreMedia = abs(getMedia())*sqrt(pow(rhs.getErroreMedia() / rhs.getMedia(),2) + pow(getErroreMedia() / tMedia,2) );//Propagato come una StDev normale
+//		return *this;	//Idiozia ma dicono che serva
+//
+//
+//};
 
 //Moltiplicazione a destra per uno scalare
 template <typename U>
@@ -199,7 +222,10 @@ inline const VarStat<U> operator*(const double& lhs, const VarStat<U> rhs) {
 	return (rhs*lhs);
 }
 
-//Moltiplicazione a sinistra per uno scalare
+
+
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Classe per l'analisi di UNA variabile statistica offline, cioè avendo accesso a tutti i dati fin dall'inizio
@@ -212,6 +238,8 @@ public:
 	friend std::ostream& operator<<<T>(std::ostream& , const VarStat<T>& );
 	friend const VarStat<T> operator*<T>(const VarStat<T> , const double& );
 	friend const VarStat<T> operator*<T>(const double& , const VarStat<T> );
+	//TODO potcombo
+	//friend const VarStat<T> potcombo(const VarStat<T>& , const double , const VarStat<T>& , const double );
 
 	//
 	VarStat(T valore) {

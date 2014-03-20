@@ -16,7 +16,8 @@
 #include <cstdlib>//system(clear)
 #include <algorithm>//Sort?
 #include <sstream>//StringStream
-#include <map>
+//#include <map>
+#include <vector>
 
 /////////////////////////////////////////////////////////////////////////////////////
 //le mie classi
@@ -58,16 +59,54 @@ using namespace std;
 //		cout << "fileDati[3][INDICE]: " << fileDati[3][INDICE] << endl;
 //		cout << "fileDati[DIAMETRO]: " << fileDati["DIAMETRO"] << endl;
 //		cout << "fileDati[indice che non esiste]: " << fileDati["ciao"];
-		{
-			cout << numParam;
-			string stringaNomeFileDiDati;
-			//map<string,> ciao;
 
-			fstream ListaFileDiDati;
-			ListaFileDiDati.open("./Altro/ListaFileDiDati.txt");
+		//
+		const int ACCIAIO   = 	1;
+		const int TUNGSTENO = 	2;
+		const int OTTONE    = 	3;
 
-			while(getline(ListaFileDiDati,stringaNomeFileDiDati)) {
-				;
+		//int materiali[] = {ACCIAIO,TUNGSTENO,OTTONE};
+
+
+		cout << numParam;
+		string stringaNomeFileDiDati;
+		//map<string,> ciao;
+
+		fstream ListaFileDiDati;
+		ListaFileDiDati.open("./Altro/ListaFileDiDati.txt");
+
+
+		using FileDati = mions::dataAnalisi::File_Fdat<double>;
+		using vs = mions::dataAnalisi::VarStat<double>;
+		//Dovrebbe essere un varstat
+		vector<vs> kDegliEstensimetri;
+
+
+		while(getline(ListaFileDiDati,stringaNomeFileDiDati)) {
+
+			FileDati fileDati(stringaNomeFileDiDati.c_str());
+			vector<vs> youngacciaio;
+			vector<vs> youngtungsteno;
+			vector<vs> youngottone;
+
+			const vs LUNGHEZZA = vs( fileDati["LUNGHEZZA"], fileDati["ERR_LUNGHEZZA"] );
+			const vs AREA = vs( pow(fileDati["DIAMETRO"],2) * M_PI / 4, fileDati["DIAMETRO"] * (M_PI / 4) * fileDati["ERR_DIAMETRO"] );
+
+
+			switch ( (int)fileDati["MATERIALE"] ) {
+				case ACCIAIO:
+					//youngacciaio.push_back();
+
+					break;
+				case TUNGSTENO:
+
+					break;
+				case OTTONE:
+
+					break;
+				default:
+					throw "Errore nello switch";
+					break;
 			}
 		}
 
