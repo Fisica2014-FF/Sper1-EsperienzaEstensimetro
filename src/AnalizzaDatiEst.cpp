@@ -79,7 +79,8 @@ using namespace std;
 		using FileDati = mions::dataAnalisi::File_Fdat<double>;
 		using vs = mions::dataAnalisi::VarStat<double>;
 		//Dovrebbe essere un varstat
-		vector<vs> kDegliEstensimetri;
+		FileDati kDegliEstensimetri(string("./Risultati/YoungEstensimetriGnuplot"));
+
 
 
 		while(getline(ListaFileDiDati,stringaNomeFileDiDati)) {
@@ -89,25 +90,36 @@ using namespace std;
 			vector<vs> youngtungsteno;
 			vector<vs> youngottone;
 
+			//Es da E13_andata.fdat ottengo "E13"
+			string nomeEstensimetro = stringaNomeFileDiDati.substr(0,10);
+			clog << "nomeEstensimetro: " << nomeEstensimetro;
+			const vs kappaEstensimetro = vs(kDegliEstensimetri[nomeEstensimetro] , kDegliEstensimetri[string("ERR_") +
+			                                                                                          nomeEstensimetro]);
+
 			const vs LUNGHEZZA = vs( fileDati["LUNGHEZZA"], fileDati["ERR_LUNGHEZZA"] );
 			const vs AREA = vs( pow(fileDati["DIAMETRO"],2) * M_PI / 4, fileDati["DIAMETRO"] * (M_PI / 4) * fileDati["ERR_DIAMETRO"] );
 
-
 			switch ( (int)fileDati["MATERIALE"] ) {
 				case ACCIAIO:
-					//youngacciaio.push_back();
+					//x0 / (A*k2) | k2 = Dx / Df <= beta delle rette
+					youngacciaio.push_back( LUNGHEZZA / (AREA * kappaEstensimetro ) );
 
 					break;
 				case TUNGSTENO:
+					youngtungsteno.push_back( LUNGHEZZA / (AREA * kappaEstensimetro ) );
 
 					break;
 				case OTTONE:
+					youngottone.push_back( LUNGHEZZA / (AREA * kappaEstensimetro ) );
 
 					break;
 				default:
 					throw "Errore nello switch";
 					break;
 			}
+
+			for (auto myoung : youngacciaio)
+				;
 		}
 
 	} catch (exception &e) {

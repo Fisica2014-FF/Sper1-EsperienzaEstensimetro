@@ -1,9 +1,9 @@
 # Questo file contiene i dati dei k degli estensimetri di questo materiale (qui tutti),
 # calcolati da gnuplot. Spero di automatizzare il processo.
 # 
-#%E13:100
-#%ERR_E13:5
-#%E17:200
-#%ERR_E17:7
+#%E13_andata:100
+#%ERR_E13_andata:5
+#%E13_ritorno:200
+#%ERR_E13_ritorno:7
 # 
 # Eccetera...
