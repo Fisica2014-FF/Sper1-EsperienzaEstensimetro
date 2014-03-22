@@ -23,6 +23,8 @@
 //le mie classi
 #include "mylib/AnalisiDati/VarStat.h"//Le mie classi Template per l'analisi dati
 #include "mylib/AnalisiDati/SortingVarStat.h"//Le mie classi Template per l'analisi dati
+#include "mylib/utils/NomeDiFile.h"//Le mie classi Template per l'analisi dati
+
 
 #define VERSIONE 1.0
 
@@ -59,6 +61,13 @@ using namespace std;
 //		cout << "fileDati[3][INDICE]: " << fileDati[3][INDICE] << endl;
 //		cout << "fileDati[DIAMETRO]: " << fileDati["DIAMETRO"] << endl;
 //		cout << "fileDati[indice che non esiste]: " << fileDati["ciao"];
+
+		//TEST NomeDiFile
+
+
+
+
+
 
 		//
 		const int ACCIAIO   = 	1;
@@ -99,7 +108,7 @@ using namespace std;
 			const vs LUNGHEZZA = vs( fileDati["LUNGHEZZA"], fileDati["ERR_LUNGHEZZA"] );
 			const vs AREA = vs( pow(fileDati["DIAMETRO"],2) * M_PI / 4, fileDati["DIAMETRO"] * (M_PI / 4) * fileDati["ERR_DIAMETRO"] );
 
-			switch ( (int)fileDati["MATERIALE"] ) {
+			switch ( int(fileDati["MATERIALE"]) ) {
 				case ACCIAIO:
 					//x0 / (A*k2) | k2 = Dx / Df <= beta delle rette
 					youngacciaio.push_back( LUNGHEZZA / (AREA * kappaEstensimetro ) );
@@ -118,8 +127,11 @@ using namespace std;
 					break;
 			}
 
+			vs somma(0);
 			for (auto myoung : youngacciaio)
-				;
+				somma += myoung;
+			cout << "Media acciaio" << somma * (1.0 / double(youngacciaio.size()));
+
 		}
 
 	} catch (exception &e) {

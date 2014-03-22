@@ -24,6 +24,7 @@
 
 //Il mio namespace
 namespace mions {
+
 //Classi per l'analisi dei dati statistici
 namespace dataAnalisi {
 using std::vector;
@@ -68,7 +69,7 @@ public:
 		clog << "E fin qua...";
 		file_form.open(nomeFile.c_str());
 		if (!file_form.is_open())
-			throw "Errore: file di dati non aperto";
+			throw "[Errore]: file di dati non aperto";
 
 
 		while (getline(file_form,rigamd)) {
@@ -134,7 +135,7 @@ public:
 		if (iterat != MetaDatiGenerici.end())
 			return iterat->second;
 		else
-			throw "Errore: usato indice non esistente";
+			throw "[Errore]: usato indice non esistente";
 	}
 
 };
