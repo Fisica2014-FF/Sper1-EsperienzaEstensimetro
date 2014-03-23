@@ -24,21 +24,24 @@ NomeDiFile::NomeDiFile(const std::string& stringanomefile) {
 	// TODO: idealmente se il file viene passato come nome semplice (es "ciao.txt") si presume
 	// che riesca a capirlo e metterlo come ./ciao.txt
 	if (stringanomefile.substr(0,2) == "./" or stringanomefile.substr(0,1) == "/")
-		PathTotale = stringanomefile;
+		pathTotale = stringanomefile;
 	else
-		PathTotale = string("./") + stringanomefile;
+		pathTotale = string("./") + stringanomefile;
 
 	//Dividi la cartella dal nome
-	unsigned slash = PathTotale.find_last_of("/");
-	nomeCartella = PathTotale.substr(0,slash);
-	nomePiuEstensione = PathTotale.substr(slash+1);
+	unsigned slash = pathTotale.find_last_of("/");
+	nomeCartella = pathTotale.substr(0,slash);
+	nomePiuEstensione = pathTotale.substr(slash+1);
 
-	unsigned punto = nomePiuEstensione.find_last_of(".");
+	auto punto = nomePiuEstensione.find_last_of(".");
 
 	//Controlla se ha estensione (se ha il punto)
 	if (punto != nomePiuEstensione.npos) {
 		nome = nomePiuEstensione.substr(0,punto);
 		estensione = nomePiuEstensione.substr(punto+1);
+		if (nome.empty()) {
+			throw string("[Errore]: Probabilmente usato file nascosto: ") + stringanomefile;
+		}
 	} else {
 		std::clog << "[Warning]: Usato file senza estensione: " << stringanomefile << std::endl;
 
@@ -46,17 +49,16 @@ NomeDiFile::NomeDiFile(const std::string& stringanomefile) {
 		estensione = "";
 	}
 
-
 }
 
 //Stampa i vari componenti del nome del file, utile per il debug
-std::ostream& NomeDiFile::operator <<(std::ostream& os, const NomeDiFile& rhs) {
+std::ostream& operator <<(std::ostream& os, const NomeDiFile& rhs) {
 	//Se il nome di file passato al costruttore è ./ciao/Darth.vader
-	os << PathTotale 		<< std::endl;  		// questo è ./ciao/Darth.vader
-	os << nomeCartella 		<< std::endl;		// questo è ./ciao
-	os << nome 				<< std::endl; 		// questo è Darth
-	os << estensione 		<< std::endl; 		// questo è vader
-	os << nomePiuEstensione << std::endl;		// questo è Dart.vader
+	os << "pathTotale: " 		<< rhs.pathTotale 			 << std::endl;  // questo è ./ciao/Darth.vader
+	os << "nomeCartella: "  	<< rhs.nomeCartella 		 << std::endl;	// questo è ./ciao
+	os << "nome: " 				<< rhs.nome 				 << std::endl; 	// questo è Darth
+	os << "estensione: "		<< rhs.estensione 			 << std::endl; 	// questo è vader
+	os << "nomePiuEstensione: " << rhs.nomePiuEstensione 	 << std::endl;	// questo è Dart.vader
 	return os;
 };
 

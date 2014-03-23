@@ -65,10 +65,19 @@ using namespace std;
 		//TEST NomeDiFile
 
 
-
-
-
-
+//		NomeDiFile testnomefile1("./ciao/Darth.vader");
+//		cout << testnomefile1 << endl;
+//
+//		NomeDiFile testnomefile2("./ciao/Darth");
+//		cout << testnomefile2 << endl;
+//
+//		NomeDiFile testnomefile3("Darth.vader");
+//		cout << testnomefile3 << endl;
+//
+//		NomeDiFile testnomefile4("/ciao/vader");
+//		cout << testnomefile4 << endl;
+//
+//		return 0;
 		//
 		const int ACCIAIO   = 	1;
 		const int TUNGSTENO = 	2;
@@ -85,22 +94,24 @@ using namespace std;
 		ListaFileDiDati.open("./Altro/ListaFileDiDati.txt");
 
 
+		using mions::utils::NomeDiFile;
 		using FileDati = mions::dataAnalisi::File_Fdat<double>;
 		using vs = mions::dataAnalisi::VarStat<double>;
 		//Dovrebbe essere un varstat
-		FileDati kDegliEstensimetri(string("./Risultati/YoungEstensimetriGnuplot"));
+		FileDati kDegliEstensimetri(NomeDiFile("./Risultati/YoungEstensimetriGnuplot"));
 
 
 
 		while(getline(ListaFileDiDati,stringaNomeFileDiDati)) {
 
-			FileDati fileDati(stringaNomeFileDiDati.c_str());
+			NomeDiFile nomeDelFileDati(stringaNomeFileDiDati);
+			FileDati fileDati(nomeDelFileDati);
 			vector<vs> youngacciaio;
 			vector<vs> youngtungsteno;
 			vector<vs> youngottone;
 
 			//Es da E13_andata.fdat ottengo "E13"
-			string nomeEstensimetro = stringaNomeFileDiDati.substr(0,10);
+			string nomeEstensimetro = nomeDelFileDati.nome.substr(0,10);
 			clog << "nomeEstensimetro: " << nomeEstensimetro;
 			const vs kappaEstensimetro = vs(kDegliEstensimetri[nomeEstensimetro] , kDegliEstensimetri[string("ERR_") +
 			                                                                                          nomeEstensimetro]);
@@ -123,14 +134,15 @@ using namespace std;
 
 					break;
 				default:
-					throw "Errore nello switch";
+					throw "[Errore]: Errore nello switch";
 					break;
 			}
 
+			//TODO: Me par zusto...
 			vs somma(0);
 			for (auto myoung : youngacciaio)
 				somma += myoung;
-			cout << "Media acciaio" << somma * (1.0 / double(youngacciaio.size()));
+			cout << "Media acciaio: \n" << somma * (1.0 / double(youngacciaio.size()));
 
 		}
 

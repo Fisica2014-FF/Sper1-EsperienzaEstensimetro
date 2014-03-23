@@ -1,0 +1,8 @@
+# Test
+Ciao! Sono qua per provare varie cose dei template, per esempio se
+funzionano.
+Esempi: Lunghezza: __LUNGHEZZA__
+Esempio con underscore dentro: __ERR_LUNGHEZZA__, __DIAMETRO__ e altre parole sulla riga
+# Prova nei commenti __LUNGHEZZA__ e così via
+E anche il __@NOME_DATI__, due volte: __@NOME_DATI__. Per non parlare del famigerato
+nome del template!  __@NOME_TEMPLATE__. E sempre... __@NOME_DATI__ __@NOME_TEMPLATE__

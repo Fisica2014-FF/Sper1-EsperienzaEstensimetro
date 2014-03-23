@@ -9,6 +9,7 @@
 #include <string>
 #include <map>
 #include <unordered_map>
+#include "../utils/NomeDiFile.h"
 
 
 #ifdef _MIO_DEBUG_
@@ -38,12 +39,8 @@ using std::vector;
 //Se invece l'indice è una stringa, recupera i metadati associati a quel tag.
 template <class T>
 class File_Fdat {
-public:
+protected:
 	//std::string formato;
-	std::map<std::string, double> MetaDatiGenerici;
-
-
-	vector< vector<T> > vColDati;//Matrice dei dati: un vettore di puntatori a dei vettori
 
 	// Leggi una riga alla volta, se è un commento saltala, altrimenti prosegui:
 	// 		se è un metadato aggiungilo alla mappa, sennò memorizza la riga di numeri
@@ -120,6 +117,11 @@ public:
 		sindice.clear();
 		}
 	}
+public:
+	std::map<std::string, double> MetaDatiGenerici;
+	vector< vector<T> > vColDati;//Matrice dei dati: un vettore di puntatori a dei vettori
+
+	File_Fdat(mions::utils::NomeDiFile nomeFile) : File_Fdat(nomeFile.pathTotale) { };
 
 	//Se l'indice è un numero n, ritorna l'n-esima riga della matrice di numeri
 	inline std::vector<T> operator[](int indice) {
@@ -268,11 +270,13 @@ public:
 		dErroreMedia = 0;
 	}
 
-	VarStat(std::string nomeFile){
-		if (nomeFile.find(".fdat")) {
-
-		}
-	}
+	//TODO: Pensarci su
+//	VarStat(mions::utils::NomeDiFile nomeDiFile){
+//		if (nomeDiFile.estensione != "fdat") {
+//			throw "[Errore]: Usato un file non fdat, l'estensione non è corretta";
+//		}
+//		VarStat(aDati, true);
+//	}
 
 
 	//Costruttore
