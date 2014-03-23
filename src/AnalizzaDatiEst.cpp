@@ -101,7 +101,11 @@ using namespace std;
 		FileDati kDegliEstensimetri(NomeDiFile("./Risultati/YoungEstensimetriGnuplot"));
 
 
-
+		/*  In realtà, i dati in sè nei file non servono a molto, perchè vengono analizzati da gnuplot
+		 *  Qui contano solo i metadati dei file
+		 *
+		 *  Prendi un file dalla lista ed estraine le informazioni.
+		 */
 		while(getline(ListaFileDiDati,stringaNomeFileDiDati)) {
 
 			NomeDiFile nomeDelFileDati(stringaNomeFileDiDati);
@@ -138,7 +142,7 @@ using namespace std;
 					break;
 			}
 
-			//TODO: Me par zusto...
+			//TODO: L'me par giusto...
 			vs somma(0);
 			for (auto myoung : youngacciaio)
 				somma += myoung;

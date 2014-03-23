@@ -11,12 +11,13 @@ use 5.010;
 # ./InterfacciaFitGnuplot ./CartellaFileTemplate ./CartellaFileDati
 # Dati una serie di file di dati .fdat, voglio un sistema coerente e consistente per effettuare operazioni
 # identiche (nel senso che la variabilità dipende solo da info nei file) su di essi, dove
-# con operazione si intende una funzione f(file_fdat, template, cartella dell'output) => file_di_output che crea un file dove
+# con operazione si intende una funzione f(file_fdat, template, oracolo) => file_di_output che crea un file dove
 # le variabili di template, indicate __COSI__, oppure __@COSI__ sono sostituite con il loro valore
 
-# Ci sono 3 argomenti: file_fdat, template e cartella dell'output
-# Il programma agirà su un file di fdat (primo argomento), usando le informazioni in esso contenute per
-# riempire il template e salverà il risultato
+# Ci sono 3 argomenti: file_fdat, template, e oracolo.
+# Il programma agirà su un file di fdat (primo argomento), usando le informazioni in esso e
+# fornite eventualmente dall'oracolo (in programma che stampa sullo standard output) contenute per
+# riempire il template (secondo argomento) e stamperà il risultato sullo standard output
 
 #die "Errore: Troppi pochi argomenti"if $#ARGV < 1;
 
@@ -49,8 +50,6 @@ say $metadati{"LUNGHEZZA"};
 say Dumper(%metadati);
 
 
-
-
 @lines = <FILETEMPLATE>;
 
 #Per ogni linea del file di template, 
@@ -58,25 +57,21 @@ CICLOTEMPLATE:
 foreach my $linea (@lines) {
 
 	#next CICLOTEMPLATE if (/^#/); #Salta le righe coi commenti, che iniziano con # seguito da qualsiasi carattere diverso da %
-							  		  # Altrimenti siamo nel caso sotto
-	# TODO: Sostituire il nome del file
-	if ($linea =~ s/__\@NOME_DATI__/$ARGV[0]/g){
-		print $linea;
-		next CICLOTEMPLATE;
-	}
-	
-	$linea =~ s/__\@NOME_TEMPLATE__/$ARGV[1]/g {
-		print $linea;
-		next CICLOTEMPLATE;
-	}
+
+	#Per ogni caso, facciamo una sostituzione appropriata
+	#Qui, i tag speciali, che iniziano con @, vengono sostituiti
+	$linea =~ s/__\@NOME_DATI__/$ARGV[0]/g;
+	$linea =~ s/__\@NOME_TEMPLATE__/$ARGV[1]/g;
 	
 	# Se la riga contiene un tag, sostituiscilo secondo le regole dello standard					  		  	
-	$linea =~ s/__(\w+)__/$metadati{$1}/g; 
+	$linea =~ s/__(\w+)__/$metadati{$1}/g;
 		#         ^^^^^
 		#          $1
 	if (defined $1) {
 		die "[Errore]: La chiave non esiste: $1" unless exists $metadati{$1};
 	}
+	
 	# Sostituisci il tag del template con il corrispondente valore nell'hash
 	print $linea;
+	
 }
