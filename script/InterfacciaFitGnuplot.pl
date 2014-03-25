@@ -26,7 +26,7 @@ use 5.010;
 open FILEDATI, "<", $ARGV[0] or die "[Errore]: Errore nell'apertura del file di dati";
 open FILETEMPLATE, "<", $ARGV[1] or die "[Errore]: Errore nell'apertura del file di template";
 
-# se ./ciao/Darth.fener allora $nomesemplicedati = Dart.fener
+# se ./ciao/Darth.fener allora $name = Dart, $path = ./ciao/, $suffix = vader
 my ($named,$pathd,$suffixd) = fileparse($ARGV[0],qr/\.[^.]*/); #File dei dati
 my ($namet,$patht,$suffixt) = fileparse($ARGV[1],qr/\.[^.]*/); #FIle del template
 

@@ -39,7 +39,6 @@ using std::vector;
 //Se invece l'indice è una stringa, recupera i metadati associati a quel tag.
 template <class T>
 class File_Fdat {
-protected:
 	//std::string formato;
 
 	// Leggi una riga alla volta, se è un commento saltala, altrimenti prosegui:
@@ -51,6 +50,11 @@ protected:
 	 * Inoltre memorizza la matrice dei dati
 	 *
 	 */
+
+	//Scoprire perchè chiamare il costruttore dall'altro costruttore non funziona
+
+//protected:
+public:
 	File_Fdat(std::string nomeFile) {
 		using namespace std;
 		ifstream file_form;
@@ -63,10 +67,11 @@ protected:
 		double dvalore;
 		char temp;
 
-		clog << "E fin qua...";
-		file_form.open(nomeFile.c_str());
-		if (!file_form.is_open())
-			throw "[Errore]: file di dati non aperto";
+		clog << nomeFile << endl;
+		clog << "E fin qua...\n";
+		file_form.open(nomeFile);
+		if (!(file_form.is_open()))
+			throw string("[Errore]: file di dati non aperto") + nomeFile;
 
 
 		while (getline(file_form,rigamd)) {
@@ -137,7 +142,7 @@ public:
 		if (iterat != MetaDatiGenerici.end())
 			return iterat->second;
 		else
-			throw "[Errore]: usato indice non esistente";
+			throw std::string("[Errore]: usato indice non esistente: ") + stringaindice;
 	}
 
 };

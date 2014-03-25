@@ -15,7 +15,7 @@ namespace utils {
 
 
 // Ideal
-NomeDiFile::NomeDiFile(const std::string& stringanomefile) {
+NomeDiFile::NomeDiFile(const std::string stringanomefile) {
 	using std::string;
 
 	if (stringanomefile.empty())

@@ -6,7 +6,7 @@
 
 set title "Distribuzione dei dati: __@NOME_DATI__"
 set xlabel "Forza (N)"
-set ylabel "Allungamento ($10^{-5}	m$)"
+set ylabel "Allungamento ($10^{-5} [m]$)"
 set terminal tikz
 set output "__@PATH_TEMPLATE__immagini/__@NOME_DATI___grafico.tex"
 
@@ -14,13 +14,23 @@ set output "__@PATH_TEMPLATE__immagini/__@NOME_DATI___grafico.tex"
 
 set key right bottom Left
 
+#update updata il f
+
 set grid on
+set fit errorvariables # creates a_err type variables for fitting errors
 
 fandata(x) = a_a + kappa_a*x 
 fritorno(x) = a_r + kappa_r*x 
 
-fit fandata(x) "<paste __@PATH_DATI__forza_andata __@FILE_DATI__" using 1:2 via a_a,kappa_a
-fit fritorno(x) "<paste __@PATH_DATI__forza_ritorno __@PATHNOME_DATI__ritorno.fdat" using 1:2 via a_r,kappa_r
+
+#update updata il file fornito a "via" con i nuovi valori
+fit fandata(x) "<paste __@PATH_DATI__forza_andata __@FILE_DATI__" using 1:2 via a_a, kappa_a
+fit fritorno(x) "<paste __@PATH_DATI__forza_ritorno __@PATHNOME_DATI__ritorno.fdat" using 1:2 via a_r, kappa_r
+
+set print "__@PATH_TEMPLATE____@NOME_DATI___param"
+print kappa_a, kappa_a_err
+set print "__@PATH_TEMPLATE____@NOME_DATI___param_r"
+print kappa_r, kappa_r_err
 
 plot "<paste __@PATH_DATI__forza_andata __@FILE_DATI__" with yerrorbars title "Dati andata", \
 "<paste __@PATH_DATI__forza_ritorno __@PATHNOME_DATI__ritorno.fdat" with yerrorbars title "Dati ritorno", \
@@ -28,4 +38,3 @@ fandata(x) title "Andata", \
 fritorno(x) title "Ritorno"
 
 unset output # Flusha i changes, per alcuni files
-

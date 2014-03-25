@@ -27,7 +27,7 @@ public:
 	std::string nome; 				// questo è Darth
 	std::string estensione; 		// questo è vader
 	std::string nomePiuEstensione;	// questo è Dart.vader
-	NomeDiFile(const std::string& stringanomefile);
+	NomeDiFile(const std::string stringanomefile);
 	//NomeDiFile(const char* charnomefile);
 	friend std::ostream& operator <<(std::ostream& os, const NomeDiFile& rhs);
 };

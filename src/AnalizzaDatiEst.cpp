@@ -111,7 +111,7 @@ using namespace std;
 		while(getline(ListaFileDiDati,stringaNomeFileDiDati)) {
 
 			NomeDiFile nomeDelFileDati(stringaNomeFileDiDati);
-			FileDati fileDati(nomeDelFileDati);
+			FileDati fileDati(nomeDelFileDati.pathTotale);
 			vector<vs> youngacciaio;
 			vector<vs> youngtungsteno;
 			vector<vs> youngottone;
@@ -119,6 +119,22 @@ using namespace std;
 			//Es da E13_andata.fdat ottengo "E13_andata"
 			string nomeEstensimetro = nomeDelFileDati.nome;
 			clog << "nomeEstensimetro: " << nomeEstensimetro;
+			/*
+6.96504311887864 0.0309247031765164
+6.98009252738489 0.0381502469618036
+4.76664376697682 0.0250656266056032
+4.74646140835764 0.0169320622949162
+3.91259086359153 0.00987732686648944
+3.92183446349384 0.0117728434393252
+5.18436398979338 0.0129817798787139
+5.19129601775153 0.0143078721525871
+5.39413914372792 0.0148159872453062
+5.31560751873617 0.0825033158833009
+4.47254766407479 0.0153204644390845
+4.49111281223576 0.0237828290956587
+			 *
+			 */
+
 			const vs kappaEstensimetro = vs(kDegliEstensimetri[nomeEstensimetro] , kDegliEstensimetri[string("ERR_") +
 			                                                                                          nomeEstensimetro]);
 
@@ -128,15 +144,15 @@ using namespace std;
 			switch ( int(fileDati["MATERIALE"]) ) {
 				case ACCIAIO:
 					//x0 / (A*k2) | k2 = Dx / Df <= beta delle rette
-					youngacciaio.push_back( LUNGHEZZA / (AREA * kappaEstensimetro ) );
+					youngacciaio.push_back( 10e4 * LUNGHEZZA / (AREA * kappaEstensimetro ) );
 
 					break;
 				case TUNGSTENO:
-					youngtungsteno.push_back( LUNGHEZZA / (AREA * kappaEstensimetro ) );
+					youngtungsteno.push_back( 10e4 * LUNGHEZZA / (AREA * kappaEstensimetro ) );
 
 					break;
 				case OTTONE:
-					youngottone.push_back( LUNGHEZZA / (AREA * kappaEstensimetro ) );
+					youngottone.push_back( 10e4 * LUNGHEZZA / (AREA * kappaEstensimetro ) );
 
 					break;
 				default:
@@ -145,11 +161,20 @@ using namespace std;
 			}
 
 			//TODO: L'me par giusto...
-			vs somma(0);
-			for (auto myoung : youngacciaio)
-				somma += myoung;
-			cout << "Media acciaio: \n" << somma * (1.0 / double(youngacciaio.size()));
-
+			vs sommaacc(0);
+			vs sommatung(0);
+			vs sommaott(0);
+			for (auto myoung : youngacciaio){
+				cout << "ACCIAIO myyoung: " << myoung << "";
+				sommaacc += myoung;
+			}
+			cout << "Media acciaio: \n" << sommaacc * (1.0 / 8);
+			for (auto myoung : youngtungsteno)
+				sommatung += myoung;
+			cout << "Media tungsteno: \n" << sommatung * (1.0 / 2);
+			for (auto myoung : youngottone)
+				sommaott += myoung;
+			cout << "Media ottone: \n" << sommaott * (1.0 / 2);
 		}
 
 	} catch (exception &e) {
