@@ -6,9 +6,7 @@
 \usepackage[utf8]{inputenc} % Consente l'uso caratteri accentati italiani
 \usepackage{graphicx}		% Per le immagini
 \usepackage{float}
-\usepackage{fancyhdr}
-\usepackage{gnuplot-lua-tikz}
-\usepackage[top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage[top=2in, bottom=1.5in, left=0.5in, right=0.5in]{geometry}
 
 \nonstopmode %non fermarti agli errori
 
@@ -35,33 +33,6 @@ Matricola: \texttt{1070620}\\
 \graphicspath{ {./img/} }%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%EDITARE PATH!!%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% % Path delle immagini 
 
 
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\usepackage{float}
-\usepackage{caption}
-%\usepackage{multirow}
-%\usepackage[top=3.6cm, bottom=1.5in, left=0.5in, right=0.5in]{geometry}
-
-\nonstopmode
-
-\floatstyle{ruled}
-\newfloat{tabella}{H}{lop}
-\floatname{tabella}{Tabella}
-
-\floatstyle{ruled}
-\newfloat{grafico}{H}{lop}
-\floatname{grafico}{Grafico}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5%%%%%%%%%%%%%
-
-
-
-
-
-
-
 % PROVA MODIFICA DA BROWSER!!!!
 %////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 %////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -73,90 +44,32 @@ Matricola: \texttt{1070620}\\
 \tableofcontents % Prepara l'indice generale
 
 
-
-        
-
 \section{Obiettivi}
-		
+	L'obiettivo dell'esperienza è quello di calcolare, tramite diversi valori della costante elastica K presa per diversi fili metallici, il valore del modulo di Young, E, di tre diversi materiali: Acciaio, Ottone e Tungsteno.		
 \section{Descrizione dell'apparato strumentale}
-		
+	Gli apparati sperimentali utilizzati durante quest'esperienza sono stati diversi estensimetri, ognuno dotato di un diverso filo metallico (fili d'acciao, ottone e tungsteno) e diverse caratteristiche geometriche (diametro, d, e lunghezza iniziale, x\ped{0}).
+Ogni estensimetro è dotato di un sistema meccanico manuale in grado di applicare una tensione al filo; Questo sistema è dotato di un indicatore (sensibilità indicatore forza = 100 g\ped{f}) con la particolarità che la forza effettivamente applicata al filo è quattro volte la forza letta su di esso: F\ped{applicata} = 4*F\ped{letta}.
+L'estensimetro è inoltre dotato di un contagiri, collegato al filo metellico, in grado di misurarne l'allungamento; La sensibilità di questo apparecchio è di 1$\mu$m.	
 \section{Metodologia di misura}
-		
-\section{Presentazione dati sperimentali}			
-	Riportiamo in seguito le misure tabulate, con relative statistiche.
+				
+\section{Presentazione dati sperimentali ed elaborazione dati}			
 	
 	\subsection {Inclinazione 15', senza peso}
-	La quarta misura nell'intervallo 40-60 cm ha un valore non compatibile con gli altri. Potrebbe esserci stato un errore nella trascrizione dei dati durante la misurazione.
-	\begin{grafico}
-    \centering
-		\input{../GnuPlot/immagini/E3_grafico.tex}
-		\caption{Dati del primo estensimetro}
-		\label{fig:spazio1}
-	\end{grafico}
-	Dati una serie di file di dati .fdat, voglio un sistema coerente e consistente per effettuare operazioni
-	identiche (nel senso che la variabilità dipende solo da info nei file di template o nei dati) su di essi, dove
-	con operazione si intende una funzione F : (file fdat, template) => file di output che crea un file dove
-	le variabili di template, indicate COSI, sono sostituite con il loro valore hash corrispondente: 
-
-	
-	\begin{figure}[H]
-    \centering
-		\input{../GnuPlot/immagini/E5_grafico.tex}
-		\caption{Spazio!}
-		\label{fig:spazio1}
-	\end{figure}
-
-	\begin{figure}[H]
-    \centering
-		\input{../GnuPlot/immagini/E8_grafico.tex}
-		\caption{Spazio!}
-		\label{fig:spazio1}
-	\end{figure}
-	
-	\begin{figure}[H]
-    \centering
-		\input{../GnuPlot/immagini/E13_grafico.tex}
-		\caption{Spazio!}
-		\label{fig:spazio1}
-	\end{figure}
-	
-	\begin{figure}[H]
-    \centering
-		\input{../GnuPlot/immagini/E16_grafico.tex}
-		\caption{Spazio!}
-		\label{fig:spazio1}
-	\end{figure}
-	
-	\begin{figure}[H]
-    \centering
-		\input{../GnuPlot/immagini/E17_grafico.tex}
-		\caption{Spazio!}
-		\label{fig:spazio1}
-	\end{figure}
-
 
 \section{Discussione dati sperimentali}
-	Compatibilmente con le previsioni teoriche, si è verificato che l'accelerazione della slitta non dipende dalla sua massa, infatti, 		aggiungendo il peso, varia soltanto la velocità, e che, diminuendo la velocità iniziale della slitta con l'aggiunta dello spessore, 		la decelerazione data dalla forza di attrito dell'aria è rimasta invariata. 
 
 \section{Conclusioni}
-	Si ha una migliore stima di \textbf{g} 
 	
 % Esempio di inclusione di un immagine ./img/spazio1.png etichettata fig:spazio, al centro, larga 0.8 per larghezza del testo, con testo sotto Spazio!
 \section {Grafici}
-	Di seguito sono riportati i grafici delle velocità medie e le rette interpolanti.
 	\subsection {}
+
 	%\include{}
 	
 \section{Codice}	
 
 \paragraph{}
-	Riportiamo in seguito il programma utilizzato per l'elaborazione dei dati
-	%Verbatim non interpreta l'imput lasciando il testo com'è: ideale per inserire codice
-	\begin{verbatim}
-
-	\end{verbatim}
-
-
+	
 %\subsection{Esempio immagini}
 %\begin{figure}[p]
 %    \centering
