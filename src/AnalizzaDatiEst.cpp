@@ -124,7 +124,7 @@ using namespace std;
 6.98009252738489 0.0381502469618036
 4.76664376697682 0.0250656266056032
 4.74646140835764 0.0169320622949162
-3.91259086359153 0.00987732686648944
+3.91259086359153 0.0098773268664894
 3.92183446349384 0.0117728434393252
 5.18436398979338 0.0129817798787139
 5.19129601775153 0.0143078721525871
@@ -136,45 +136,48 @@ using namespace std;
 			 */
 
 			const vs kappaEstensimetro = vs(kDegliEstensimetri[nomeEstensimetro] , kDegliEstensimetri[string("ERR_") +
-			                                                                                          nomeEstensimetro]);
+			                                                                                          nomeEstensimetro],1);
 
-			const vs LUNGHEZZA = vs( fileDati["LUNGHEZZA"], fileDati["ERR_LUNGHEZZA"] );
-			const vs AREA = vs( pow(fileDati["DIAMETRO"],2) * M_PI / 4, fileDati["DIAMETRO"] * (M_PI / 4) * fileDati["ERR_DIAMETRO"] );
+			const vs LUNGHEZZA = vs( fileDati["LUNGHEZZA"], fileDati["ERR_LUNGHEZZA"] , 1 );
+			const vs AREA = vs( pow(fileDati["DIAMETRO"],2) * M_PI / 4, fileDati["DIAMETRO"] * (M_PI / 4) * fileDati["ERR_DIAMETRO"] , 1);
 
 			switch ( int(fileDati["MATERIALE"]) ) {
 				case ACCIAIO:
 					//x0 / (A*k2) | k2 = Dx / Df <= beta delle rette
 					youngacciaio.push_back( 10e4 * LUNGHEZZA / (AREA * kappaEstensimetro ) );
-
+					cout << "\nFatto un acciaio\n";
+					cout << youngacciaio.back() << endl << endl;
 					break;
 				case TUNGSTENO:
 					youngtungsteno.push_back( 10e4 * LUNGHEZZA / (AREA * kappaEstensimetro ) );
-
+					cout << "\nFatto un TUNGSTENO\n";
+					cout << youngtungsteno.back() << endl << endl;
 					break;
 				case OTTONE:
 					youngottone.push_back( 10e4 * LUNGHEZZA / (AREA * kappaEstensimetro ) );
-
+					cout << "\nFatto un OTTONE\n";
+					cout << youngottone.back() << endl << endl;
 					break;
 				default:
 					throw "[Errore]: Errore nello switch";
 					break;
 			}
 
-			//TODO: L'me par giusto...
-			vs sommaacc(0);
-			vs sommatung(0);
-			vs sommaott(0);
-			for (auto myoung : youngacciaio){
-				cout << "ACCIAIO myyoung: " << myoung << "";
-				sommaacc += myoung;
-			}
-			cout << "Media acciaio: \n" << sommaacc * (1.0 / 8);
-			for (auto myoung : youngtungsteno)
-				sommatung += myoung;
-			cout << "Media tungsteno: \n" << sommatung * (1.0 / 2);
-			for (auto myoung : youngottone)
-				sommaott += myoung;
-			cout << "Media ottone: \n" << sommaott * (1.0 / 2);
+//			//TODO: L'me par giusto...
+//			vs sommaacc(0,0,8);
+//			vs sommatung(0,0,1);
+//			vs sommaott(0,0,1);
+//			for (auto myoung : youngacciaio){
+//				cout << "ACCIAIO myyoung: " << myoung << "";
+//				sommaacc += myoung;
+//			}
+//			cout << "Media acciaio: \n" << sommaacc * (1.0 / 8);
+//			for (auto myoung : youngtungsteno)
+//				sommatung += myoung;
+//			cout << "Media tungsteno: \n" << sommatung * (1.0 / 2);
+//			for (auto myoung : youngottone)
+//				sommaott += myoung;
+//			cout << "Media ottone: \n" << sommaott * (1.0 / 2);
 		}
 
 	} catch (exception &e) {

@@ -1,0 +1,180 @@
+./Risultati/YoungEstensimetriGnuplot
+E fin qua...
+./DatiFormattati2/E13.fdat
+E fin qua...
+nomeEstensimetro: E131
+Fatto un acciaio
+Numero dati:                       1
+Media:                             2.11359e+11
+Varianza del campione:             0
+Deviazione standard campione:      0
+Varianza della popolazione:        9.855e+39
+Deviazione standard popolazione:   9.92724e+19
+Errore della media:                -0
+Massimo:                           2.15086e+11
+Minimo:                            2.07723e+11
+
+
+./DatiFormattati2/E13_ritorno.fdat
+E fin qua...
+nomeEstensimetro: E13_ritorno
+Fatto un acciaio
+Numero dati:                       1
+Media:                             2.10903e+11
+Varianza del campione:             0
+Deviazione standard campione:      0
+Varianza della popolazione:        9.77028e+39
+Deviazione standard popolazione:   9.88447e+19
+Errore della media:                -0
+Massimo:                           2.14844e+11
+Minimo:                            2.07064e+11
+
+
+./DatiFormattati2/E16.fdat
+E fin qua...
+nomeEstensimetro: E16
+Fatto un acciaio
+Numero dati:                       1
+Media:                             2.05892e+11
+Varianza del campione:             0
+Deviazione standard campione:      0
+Varianza della popolazione:        1.99673e+40
+Deviazione standard popolazione:   1.41306e+20
+Errore della media:                -0
+Massimo:                           2.09928e+11
+Minimo:                            2.01961e+11
+
+
+./DatiFormattati2/E16_ritorno.fdat
+E fin qua...
+nomeEstensimetro: E16_ritorno
+Fatto un acciaio
+Numero dati:                       1
+Media:                             2.06768e+11
+Varianza del campione:             0
+Deviazione standard campione:      0
+Varianza della popolazione:        2.0309e+40
+Deviazione standard popolazione:   1.4251e+20
+Errore della media:                -0
+Massimo:                           2.10463e+11
+Minimo:                            2.03162e+11
+
+
+./DatiFormattati2/E17.fdat
+E fin qua...
+nomeEstensimetro: E17
+Fatto un acciaio
+Numero dati:                       1
+Media:                             2.09029e+11
+Varianza del campione:             0
+Deviazione standard campione:      0
+Varianza della popolazione:        3.05456e+40
+Deviazione standard popolazione:   1.74773e+20
+Errore della media:                -0
+Massimo:                           2.12684e+11
+Minimo:                            2.0546e+11
+
+
+./DatiFormattati2/E17_ritorno.fdat
+E fin qua...
+nomeEstensimetro: E17_ritorno
+Fatto un acciaio
+Numero dati:                       1
+Media:                             2.08537e+11
+Varianza del campione:             0
+Deviazione standard campione:      0
+Varianza della popolazione:        3.02587e+40
+Deviazione standard popolazione:   1.7395e+20
+Errore della media:                -0
+Massimo:                           2.12284e+11
+Minimo:                            2.04878e+11
+
+
+./DatiFormattati2/E3.fdat
+E fin qua...
+nomeEstensimetro: E3
+Fatto un OTTONE
+Numero dati:                       1
+Media:                             9.82369e+10
+Varianza del campione:             0
+Deviazione standard campione:      0
+Varianza della popolazione:        3.72528e+38
+Deviazione standard popolazione:   1.9301e+19
+Errore della media:                -0
+Massimo:                           9.96772e+10
+Minimo:                            9.68273e+10
+
+
+./DatiFormattati2/E3_ritorno.fdat
+E fin qua...
+nomeEstensimetro: E3_ritorno
+Fatto un OTTONE
+Numero dati:                       1
+Media:                             9.81057e+10
+Varianza del campione:             0
+Deviazione standard campione:      0
+Varianza della popolazione:        3.70542e+38
+Deviazione standard popolazione:   1.92495e+19
+Errore della media:                -0
+Massimo:                           9.95693e+10
+Minimo:                            9.66737e+10
+
+
+./DatiFormattati2/E5.fdat
+E fin qua...
+nomeEstensimetro: E5
+Fatto un TUNGSTENO
+Numero dati:                       1
+Media:                             3.77666e+11
+Varianza del campione:             0
+Deviazione standard campione:      0
+Varianza della popolazione:        8.13752e+40
+Deviazione standard popolazione:   2.85263e+20
+Errore della media:                -0
+Massimo:                           3.87208e+11
+Minimo:                            3.68508e+11
+
+
+./DatiFormattati2/E5_ritorno.fdat
+E fin qua...
+nomeEstensimetro: E5_ritorno
+Fatto un TUNGSTENO
+Numero dati:                       1
+Media:                             3.83246e+11
+Varianza del campione:             0
+Deviazione standard campione:      0
+Varianza della popolazione:        8.62916e+40
+Deviazione standard popolazione:   2.93754e+20
+Errore della media:                -0
+Massimo:                           3.98027e+11
+Minimo:                            3.69248e+11
+
+
+./DatiFormattati2/E8.fdat
+E fin qua...
+nomeEstensimetro: E8
+Fatto un acciaio
+Numero dati:                       1
+Media:                             2.13392e+11
+Varianza del campione:             0
+Deviazione standard campione:      0
+Varianza della popolazione:        9.19026e+39
+Deviazione standard popolazione:   9.58658e+19
+Errore della media:                -0
+Massimo:                           2.17015e+11
+Minimo:                            2.09858e+11
+
+
+./DatiFormattati2/E8_ritorno.fdat
+E fin qua...
+nomeEstensimetro: E8_ritorno
+Fatto un acciaio
+Numero dati:                       1
+Media:                             2.1251e+11
+Varianza del campione:             0
+Deviazione standard campione:      0
+Varianza della popolazione:        9.03924e+39
+Deviazione standard popolazione:   9.50749e+19
+Errore della media:                -0
+Massimo:                           2.16524e+11
+Minimo:                            2.08602e+11
