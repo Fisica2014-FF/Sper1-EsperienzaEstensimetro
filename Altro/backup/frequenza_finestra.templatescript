@@ -1,0 +1,26 @@
+# TEMPLATE! File da compilarecon uno script che sostituisca ai token le variabili effettive
+# Un nome tra doppi underscore, _NOME_, indica un token da sostituire con un dato
+# Token indicati in questo template: PATHDATI, MAX, MIN, MEDIA, SIGMAP, NUMDATI, NOMEDATI
+# File per fare le immagini
+# set autoscale 
+
+set title "Distribuzione dei dati: __@NOME_DATI__"
+set xlabel "Misure"
+set ylabel "N° di misure nell'intervallo"
+
+set terminal tikz
+set output "__@PATH_DATI__immagini/__@NOME_DATI___grafico.tex"
+
+fandata(x) = a_a + kappa_a*x 
+fritorno(x) = a_r + kappa_r*x 
+
+fit fandata(x) "<paste __@PATH_DATI__forza_andata __@FILE_DATI__" using 1:2 via a_a,kappa_a
+fit fritorno(x) "<paste __@PATH_DATI__forza_ritorno __@PATHNOME_DATI__ritorno.fdat" using 1:2 via a_r,kappa_r
+
+plot "<paste __@PATH_DATI__forza_andata __@FILE_DATI__" with yerrorbars title "Dati andata", \
+"<paste __@PATH_DATI__forza_ritorno __@PATHNOME_DATI__ritorno.fdat" with yerrorbars title "Dati ritorno", \
+fandata(x) title "Andata", \
+fritorno(x) title "Ritorno"
+
+unset output # Flusha i changes, per alcuni files
+

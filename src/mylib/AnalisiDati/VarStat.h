@@ -271,7 +271,7 @@ public:
 	}
 
 	//TODO: Pensarci su
-//	VarStat(mions::utils::NomeDiFile nomeDiFile){
+//	VarStat(mions::utils::NomeDiFile nomeDiFile) {
 //		if (nomeDiFile.estensione != "fdat") {
 //			throw "[Errore]: Usato un file non fdat, l'estensione non è corretta";
 //		}

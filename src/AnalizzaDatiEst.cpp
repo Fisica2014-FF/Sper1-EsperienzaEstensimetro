@@ -79,6 +79,8 @@ using namespace std;
 //
 //		return 0;
 		//
+
+
 		const int ACCIAIO   = 	1;
 		const int TUNGSTENO = 	2;
 		const int OTTONE    = 	3;
@@ -114,8 +116,8 @@ using namespace std;
 			vector<vs> youngtungsteno;
 			vector<vs> youngottone;
 
-			//Es da E13_andata.fdat ottengo "E13"
-			string nomeEstensimetro = nomeDelFileDati.nome.substr(0,10);
+			//Es da E13_andata.fdat ottengo "E13_andata"
+			string nomeEstensimetro = nomeDelFileDati.nome;
 			clog << "nomeEstensimetro: " << nomeEstensimetro;
 			const vs kappaEstensimetro = vs(kDegliEstensimetri[nomeEstensimetro] , kDegliEstensimetri[string("ERR_") +
 			                                                                                          nomeEstensimetro]);
